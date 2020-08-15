@@ -2,8 +2,8 @@
 version: '3.7'
 services:
   web:
-    host_name: 'porta_web'
     container_name: 'porta_web'
+    hostname: 'porta_web'
     build: 
       context: ./image
     ports:
@@ -24,7 +24,8 @@ services:
         max-file: '4'
         max-size: '250m'
   web-mon:
-    host_name: 'porta_mon'
+    container_name: 'porta_mon'
+    hostname: 'porta_mon'
     image: 'sophos/nginx-vts-exporter:latest'
     expose:
       - 9913
