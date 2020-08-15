@@ -1,0 +1,17 @@
+server {
+  listen       80;
+  listen  [::]:80;
+  server_name  ledyba.org *.ledyba.org;
+  return 301 https://$host$request_uri;
+}
+
+server {
+  listen       443 ssl http2;
+  listen  [::]:443 ssl http2;
+  server_name  ledyba.org;
+
+  ssl_certificate     /etc/letsencrypt/live/ledyba.org/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/ledyba.org/privkey.pem;
+  return 301 https://7io.org$request_uri;
+}
+

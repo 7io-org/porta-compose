@@ -1,0 +1,45 @@
+---
+version: '3.7'
+services:
+  web:
+    host_name: 'porta_web'
+    container_name: 'porta_web'
+    build: 
+      context: ./image
+    ports:
+      - '80:80'
+      - '443:443'
+    restart: always
+    volumes:
+      - '/opt/certbot/data:/etc/letsencrypt'
+      - './nginx/conf.d:/etc/nginx/conf.d'
+      - './nginx/sites.d:/etc/nginx/sites.d'
+      - './nginx/nginx.conf:/etc/nginx/nginx.conf'
+      - './nginx/auth:/etc/nginx/auth'
+    networks:
+      - planet-link
+    logging:
+      driver: 'json-file'
+      options:
+        max-file: '4'
+        max-size: '250m'
+  web-mon:
+    host_name: 'porta_mon'
+    image: 'sophos/nginx-vts-exporter:latest'
+    expose:
+      - 9913
+    depends_on:
+      - web
+    restart: always
+    networks:
+      - planet-link
+    environment:
+      NGINX_STATUS: 'http://porta_web/status/control?cmd=status&group=*'
+    logging:
+      driver: 'json-file'
+      options:
+        max-file: '4'
+        max-size: '250m'
+networks:
+  planet-link:
+    external: true
