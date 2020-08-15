@@ -24,8 +24,8 @@ services:
         max-file: '4'
         max-size: '250m'
   web-mon:
-    container_name: 'porta_mon'
-    hostname: 'porta_mon'
+    container_name: 'porta_web-mon'
+    hostname: 'porta_web-mon'
     image: 'sophos/nginx-vts-exporter:latest'
     expose:
       - 9913
