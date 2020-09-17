@@ -24,4 +24,7 @@ RUN cd /opt \
   && dpkg --install nginx_${NGINX_VERSION}-1~$(lsb_release -cs)_amd64.deb \
   && apt-get remove --purge -y dpkg-dev curl && apt-get -y --purge autoremove && rm -rf /var/lib/apt/lists/*
 
-CMD ["nginx", "-g", "daemon off;"]
+COPY "./entrypoint.sh" "/entrypoint.sh"
+COPY "./resolver.conf" "/resolver.conf.template"
+
+CMD ["sh", "/entrypoint.sh"]
