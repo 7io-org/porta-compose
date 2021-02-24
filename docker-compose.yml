@@ -5,17 +5,17 @@ services:
     container_name: 'porta_web'
     hostname: 'porta_web'
     build: 
-      context: ./image
+      context: ./image/nginx
     ports:
       - '80:80'
       - '443:443'
     restart: always
     volumes:
       - '/opt/certbot/data:/etc/letsencrypt'
-      - './nginx/conf.d:/etc/nginx/conf.d'
-      - './nginx/sites.d:/etc/nginx/sites.d'
-      - './nginx/nginx.conf:/etc/nginx/nginx.conf'
-      - './nginx/auth:/etc/nginx/auth'
+      - './conf/nginx/conf.d:/etc/nginx/conf.d'
+      - './conf/nginx/sites.d:/etc/nginx/sites.d'
+      - './conf/nginx/nginx.conf:/etc/nginx/nginx.conf'
+      - './conf/nginx/auth:/etc/nginx/auth'
     networks:
       - planet-link
     logging:

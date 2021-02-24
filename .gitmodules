@@ -1,0 +1,9 @@
+[submodule "image/nginx/nginx"]
+	path = image/nginx/nginx
+	url = git@github.com:nginx/nginx.git
+[submodule "image/nginx/nginx-upstream-dynamic-servers"]
+	path = image/nginx/nginx-upstream-dynamic-servers
+	url = git@github.com:GUI/nginx-upstream-dynamic-servers.git
+[submodule "image/nginx/nginx-module-vts"]
+	path = image/nginx/nginx-module-vts
+	url = git@github.com:vozlt/nginx-module-vts.git
