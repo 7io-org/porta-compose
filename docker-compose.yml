@@ -23,24 +23,7 @@ services:
       options:
         max-file: '4'
         max-size: '250m'
-  nginx-exporter:
-    container_name: 'porta_nginx-exporter'
-    hostname: 'porta_nginx-exporter'
-    image: 'sophos/nginx-vts-exporter:latest'
-    expose:
-      - 9913
-    depends_on:
-      - web
-    restart: always
-    networks:
-      - planet-link
-    environment:
-      - 'NGINX_STATUS=http://porta_web/status/control?cmd=status&group=*'
-    logging:
-      driver: 'json-file'
-      options:
-        max-file: '4'
-        max-size: '250m'
 networks:
   planet-link:
     external: true
+
