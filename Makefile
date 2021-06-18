@@ -42,7 +42,7 @@ top:
 
 .PHONY: backup
 backup:
-	sudo bash _helpers/backup.sh var
+	sudo bash _helpers/backup.sh conf
 
 # -----------------------------------------------------------------------------
 # https://makefiletutorial.com/#automatic-variables
