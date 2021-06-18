@@ -24,6 +24,7 @@ services:
         max-file: '4'
         max-size: '250m'
 networks:
+  default:
   planet-link:
     external: true
 
