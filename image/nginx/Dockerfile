@@ -26,3 +26,4 @@ COPY "./entrypoint.sh" "/entrypoint.sh"
 COPY "./resolver.conf" "/resolver.conf.template"
 
 CMD ["sh", "/entrypoint.sh"]
+

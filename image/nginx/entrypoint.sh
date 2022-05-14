@@ -4,4 +4,4 @@ export NAMESERVER=$(cat /etc/resolv.conf | grep "nameserver" | awk '{print $2}' 
 
 envsubst '$NAMESERVER' < /resolver.conf.template > /etc/nginx/conf.d/resolver.conf
 
-nginx -g "daemon off;"
+exec nginx -g "daemon off;"
