@@ -1,6 +1,6 @@
-FROM nginx:1.20.2
+FROM nginx:1.22.0
 
-ENV NGINX_VERSION     "1.20.2"
+ENV NGINX_VERSION     "1.22.0"
 
 RUN apt-get update && apt-get install -y --no-install-recommends lsb-release git
 RUN echo "deb-src http://nginx.org/packages/debian/ $(lsb_release -cs) nginx" >> /etc/apt/sources.list \
