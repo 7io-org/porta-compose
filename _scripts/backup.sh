@@ -10,7 +10,7 @@ shift
 USR_UID="$1"
 shift
 
-docker-compose down
+/home/linuxbrew/.linuxbrew/bin/docker-compose down
 tar -czvf "${BACKUP_FILENAME}" "$@"
 chown "${USR_GID}:${USR_UID}" "${BACKUP_FILENAME}"
-docker-compose up -d
+/home/linuxbrew/.linuxbrew/bin/docker-compose up -d
