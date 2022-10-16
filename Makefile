@@ -30,6 +30,10 @@ pull:
 log:
 	docker-compose logs -f --tail 0
 
+.PHONY: log-all
+log-all:
+	docker-compose logs web
+
 .PHONY: ps
 ps:
 	docker-compose ps
