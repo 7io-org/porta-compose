@@ -6,8 +6,8 @@ server {
   ssl_certificate /etc/letsencrypt/live/ledyba.org/fullchain.pem;
   ssl_certificate_key /etc/letsencrypt/live/ledyba.org/privkey.pem;
 
-  ssl_verify_client on;
-  ssl_client_certificate /etc/nginx/auth/hexe/fairy-rockets.crt;
+  #ssl_verify_client on;
+  #ssl_client_certificate /etc/nginx/auth/hexe/fairy-rockets.crt;
 
   client_max_body_size 512m;
   location / {

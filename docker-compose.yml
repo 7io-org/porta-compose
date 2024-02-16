@@ -7,8 +7,8 @@ services:
     build: 
       context: ./image/nginx
     ports:
-      - '80:80'
-      - '443:443'
+      - '0.0.0.0:80:80'
+      - '0.0.0.0:443:443'
     restart: always
     volumes:
       - '/opt/certbot/data:/etc/letsencrypt'
@@ -16,6 +16,7 @@ services:
       - './conf/nginx/sites.d:/etc/nginx/sites.d'
       - './conf/nginx/nginx.conf:/etc/nginx/nginx.conf'
       - './conf/nginx/auth:/etc/nginx/auth'
+      - './www:/www'
     networks:
       - planet-link
     logging:
