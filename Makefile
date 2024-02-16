@@ -32,7 +32,7 @@ log:
 
 .PHONY: log-all
 log-all:
-	docker-compose logs web
+	docker-compose logs web -f --tail all
 
 .PHONY: ps
 ps:
