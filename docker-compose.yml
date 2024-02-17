@@ -17,6 +17,7 @@ services:
       - './conf/nginx/nginx.conf:/etc/nginx/nginx.conf'
       - './conf/nginx/auth:/etc/nginx/auth'
       - './www:/www'
+      - './log:/log'
     networks:
       - planet-link
     logging:
