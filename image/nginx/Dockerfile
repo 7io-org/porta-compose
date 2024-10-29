@@ -1,10 +1,16 @@
-FROM nginx:1.24
+FROM nginx:1.26
 
-ENV NGINX_VERSION "1.24.0"
+ENV NGINX_VERSION "1.26.1"
+ENV NGINX_GPGKEY_URL  "https://nginx.org/keys/nginx_signing.key"
 ENV NGINX_GPGKEY_PATH "/usr/share/keyrings/nginx-archive-keyring.gpg"
 
-RUN apt-get update && apt-get install -y --no-install-recommends lsb-release git
-RUN echo "deb-src [signed-by=$NGINX_GPGKEY_PATH] https://nginx.org/packages/debian/ $(lsb_release -cs) nginx" >> /etc/apt/sources.list.d/nginx.list \
+# https://nginx.org/en/linux_packages.html
+RUN  apt-get update \
+  && apt-get install -y --no-install-recommends lsb-release git curl gnupg2 ca-certificates debian-archive-keyring
+RUN  curl -s "$NGINX_GPGKEY_URL" | gpg --dearmor > "$NGINX_GPGKEY_PATH" \
+  && cat "$NGINX_GPGKEY_PATH" | apt-key add - \
+  && apt-get update
+RUN  echo "deb-src [signed-by=$NGINX_GPGKEY_PATH] https://nginx.org/packages/debian/ $(lsb_release -cs) nginx" >> /etc/apt/sources.list.d/nginx.list \
   && apt-get update \
   && apt-get install -y dpkg-dev curl \
   && mkdir -p /opt/rebuildnginx \
@@ -12,7 +18,7 @@ RUN echo "deb-src [signed-by=$NGINX_GPGKEY_PATH] https://nginx.org/packages/debi
   && cd /opt/rebuildnginx \
   && su --preserve-environment -s /bin/bash -c "apt-get source nginx" _apt \
   && apt-get build-dep -y "nginx=${NGINX_VERSION}"
-RUN cd /opt \
+RUN  cd /opt \
   && git clone https://github.com/GUI/nginx-upstream-dynamic-servers.git \
   && ls -alh /opt \
   && ls -alh /opt/rebuildnginx \
