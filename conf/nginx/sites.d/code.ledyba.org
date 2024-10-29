@@ -10,6 +10,10 @@ server {
   #ssl_client_certificate /etc/nginx/auth/hexe/fairy-rockets.crt;
 
   client_max_body_size 512m;
+  location /robots.txt {
+    add_header Content-Type text/plain;
+    return 200 'User-agent: *\nDisallow: /';
+  }
   location / {
     expires off;
     proxy_set_header Host $host;
