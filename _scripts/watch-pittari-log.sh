@@ -14,4 +14,4 @@ LAST_MODIFIED_SEC="$(date --date "${LAST_MODIFIED}" '+%s')"
 SPAN_SEC="$(expr "${LAST_MODIFIED_SEC}" - "${BIRTH_SEC}")"
 
 REQ_PER_DAY="$(python3 -c "req = 3600 * 24 * float(${REQ_COUNT})/float(${SPAN_SEC}); print(format(req, '.3f'))")"
-echo "${REQ_PER_DAY} [reqs/day]"
+echo "${REQ_PER_DAY} [req/day]"
